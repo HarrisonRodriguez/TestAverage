@@ -4,26 +4,41 @@ namespace TestAverage
 {
     class Program
     {
+        static int GetUserResponse(string question) //Custom Method to clean up code
+        {
+            int integerFromUser;
+            bool success = false;
+
+            do
+            {
+                Console.WriteLine(question);
+                var userResponse = Console.ReadLine();
+                success = int.TryParse(userResponse, out integerFromUser);
+
+            } while (success == false);
+
+            return integerFromUser;
+
+        }
         static void Main(string[] args)
         {
             //Test Average App
+            //Input from Console is of type string. So... we must convert it to an int
 
-            Console.WriteLine("What is your first test score?");
-            //Input from Console is of type string. So we must convert it to an int
-            var responseFromUser = int.Parse(Console.ReadLine());
-            Console.WriteLine("What is your second test score?");
-            var responseFromUser2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("What is your third and final test score?");
-            var responseFromUser3 = int.Parse(Console.ReadLine());
+            var scoreOne = GetUserResponse("Enter your first score");
 
-            var responsesAdded = (responseFromUser + responseFromUser2 + responseFromUser3);
-            var testAverage = (responsesAdded / 3);
+            var scoreTwo = GetUserResponse("Enter your second score");
 
-            Console.WriteLine("The average of your three test scores is..." + testAverage);
-         
+            var scoreThree = GetUserResponse("Enter your third score");
+
+            var scoresAdded = (scoreOne + scoreTwo + scoreThree);
+            var scoreAverage = (scoresAdded / 3);
+
+            Console.WriteLine("The average of your three scores is" + " " + scoreAverage);
 
 
-            Console.ReadLine();
+
+            Console.WriteLine();
 
         }
     }
